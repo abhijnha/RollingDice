@@ -1,4 +1,3 @@
-# Author : Abhijnha
 
 from random import randint
 from time import sleep
@@ -10,7 +9,7 @@ def Rolling():
     dice_roll2 = randint(1,6)
     print("Rolling dice..")
     sleep(1)
-    print (dice_roll1, dice_roll2)
+    #print (dice_roll1, dice_roll2)
     return dice_roll1 + dice_roll2
 
 # Ask the user to guess the sum of both rolling dice
@@ -24,11 +23,23 @@ def user_guess():
 def main():
     sum = Rolling()
     guess = user_guess()
-    print("Sum of rolled dice= ", sum)
-    if sum == guess:
-        print("User guess is correct!")
 
-    else:
-        print("Sorry! Wrong guess.")
+    trial = 5
+    while trial > 0:
+        if guess == sum:
+            print ("Matched")
+            break
+        elif guess > sum:
+            print("Guess is higher than the sum of dice. Try again!")
+            trial = trial - 1
+            print("Tries left: ",trial)
+            guess = user_guess()
+        else:
+            print("Guess is lower than the sum of dice. Try again!")
+            trial = trial - 1
+            print("Tries left: ", trial)
+            guess = user_guess()
+
+    print("Sum of rolled dice= ", sum)
 
 main()
